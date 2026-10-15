@@ -1,43 +1,33 @@
-# international-airpassengers-project
+# International AirPassengers Forecasting
 
-Submitted by: <your name> — academy: @SDAIAAcademy
+**Submitted by:** Lama Alqahtani
+**Academy:** @SDAIAAcademy
 
-Capstone for the SDAIA Time Series course: the full pipeline — exploration,
-decomposition, benchmark floor, model through the framework (AutoGluon),
-cross-validation, report — on the Box & Jenkins AirPassengers series
-(1949-1960).
+## Project Overview
 
-This repo is a **starter**, not a requirement. If you already know the
-pipeline, you may run it on your own series, or with a different framework
-or method — see "Your own data or method" in `brief.md`.
+This project explores and forecasts the monthly AirPassengers time series from 1949 to 1960 as part of the SDAIA Time Series course capstone.
 
-## Start
+The analysis covers time series decomposition, seasonal baseline forecasting, model comparison using AutoGluon, rolling-origin cross-validation, prediction interval evaluation, and residual analysis.
 
-1. Fork this repo.
-2. Open `project.ipynb` in Colab and run cell 1 — it installs everything
-   (the project's `coursekit`; AutoGluon is installed later, in the
-   notebook, when section 3 is reached).
-3. Read `brief.md`, do the work in the notebook, write the report as
-   `report.md`, **commit** and **push** to your fork, and submit the fork's
-   URL.
+## Key Findings
 
-## Submission
+AutoARIMA outperformed the SeasonalNaive baseline across all three rolling-origin evaluation metrics:
 
-**Fork → solve → commit → push** — the notebook and the report must live
-on GitHub, not just in a runtime.
+| Metric | SeasonalNaive |  AutoARIMA |
+| ------ | ------------: | ---------: |
+| MASE   |        1.3133 | **0.6472** |
+| RMSSE  |        1.2456 | **0.6833** |
+| CRPS   |        0.0616 | **0.0339** |
 
-At the top of your fork's `README.md`, replace `<your name>` in the line
+AutoARIMA also produced narrower 80% prediction intervals, with a mean width of 44.08 compared with 77.76 for SeasonalNaive. However, its empirical coverage was 69.8%, below the target of 80%, indicating that prediction interval calibration could be improved.
 
-    Submitted by: <your name> — academy: @SDAIAAcademy
+## Project Files
 
-with your name, so the submission is credited to you and tags the academy
-account.
+* `project.ipynb` — Notebook containing the analysis, forecasting models, evaluation, and visualizations.
+* `report.md` — Final report with the recommendation, prediction interval assessment, residual findings, and proposed next step.
+* `brief.md` — Original project instructions.
+* `rubric.md` — Project grading criteria.
 
-Deadline: **10:00 AM (Riyadh time), Thursday 15 October 2026**.
+## Recommendation
 
-## Files
-
-- `project.ipynb` — the starter notebook; the graded deliverable
-- `brief.md` — the project brief
-- `rubric.md` — how it is graded (100 + extra credit)
-- `coursekit/` — shared plotting + scoring helpers (the course's harness)
+AutoARIMA is the preferred model based on the rolling-origin evaluation results. Further work should focus on improving prediction interval calibration before relying on the forecast intervals for decision-making.
